@@ -1,7 +1,9 @@
 from typing import Any
 
-from models.joint import JOINT_PARAMETERS_NUM, Joint
+from models.joint import Joint
 from processors.base import Processor
+from utils.config import read_config_file
+from utils.constants import JOINTS_NAME, ConfigFiles, PoseEstimatorModels
 
 
 class JointsProcessor(Processor):
@@ -11,12 +13,10 @@ class JointsProcessor(Processor):
 
     current_processing_frame = 1
 
-    def __init__(self, joint_names: dict) -> None:
+    def __init__(self) -> None:
         super().__init__()
-        self.joint_names = joint_names
-
-    def __len__(self) -> int:
-        return len(self.data) * JOINT_PARAMETERS_NUM
+        config_file = read_config_file(ConfigFiles.POSE_ESTIMATORS)
+        self.joint_names = config_file[PoseEstimatorModels.MEDIAPIPE][JOINTS_NAME]
 
     def process(self, data: Any) -> list[Joint]:
         return [

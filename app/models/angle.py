@@ -1,8 +1,5 @@
 from pydantic import BaseModel
 
-ANGLE_PARAMETERS_NUM = 3
-ANGLES_PER_FRAME = 8
-
 
 class Angle(BaseModel):
     """

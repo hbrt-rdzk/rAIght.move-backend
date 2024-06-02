@@ -2,6 +2,8 @@ from models.result import Result
 from models.segment import Segment
 from processors.angles_processor import ANGLE_TYPES
 from processors.base import Processor
+from utils.config import read_config_file
+from utils.constants import COMPARISON_FEATURES_NAME, ConfigFiles
 from utils.dtw import (filter_repetable_reference_indexes,
                        get_warped_frame_indexes)
 
@@ -11,12 +13,11 @@ class ResultsProcessor(Processor):
     Processor of differences between query and reference values
     """
 
-    def __init__(
-        self, reference_segement: Segment, compariston_features: list[str]
-    ) -> None:
+    def __init__(self, reference_segement: Segment, exercise: str) -> None:
         super().__init__()
         self.reference_segment = reference_segement
-        self.comparison_features = compariston_features
+        config_file = read_config_file(ConfigFiles.EXERCISES_TABLES)
+        self.comparison_features = config_file[exercise][COMPARISON_FEATURES_NAME]
 
     def process(self, data: Segment) -> Result:
         query = data

@@ -1,19 +1,17 @@
 import numpy as np
-from models.angle import ANGLE_PARAMETERS_NUM, Angle
+from models.angle import Angle
 from models.joint import Joint
 from processors.base import Processor
-
-# For mediapipe Y is switched with Z
-ANGLE_TYPES = {"3D": [0, 1, 2], "roll": [1, 2], "pitch": [0, 1], "yaw": [0, 2]}
+from utils.config import read_config_file
+from utils.constants import (ANGLE_TYPES, ANGLES_NAME, ConfigFiles,
+                             PoseEstimatorModels)
 
 
 class AnglesProcessor(Processor):
-    def __init__(self, angle_names: dict) -> None:
+    def __init__(self) -> None:
         super().__init__()
-        self.angle_names = angle_names
-
-    def __len__(self) -> int:
-        return len(self.data) * ANGLE_PARAMETERS_NUM
+        config_file = read_config_file(ConfigFiles.POSE_ESTIMATORS)
+        self.angle_names = config_file[PoseEstimatorModels.MEDIAPIPE][ANGLES_NAME]
 
     def process(self, data: list[Joint]) -> list[Angle]:
         frame_number = data[0].frame

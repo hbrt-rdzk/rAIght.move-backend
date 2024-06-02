@@ -1,16 +1,15 @@
 from models.mistake import Mistake
 from models.result import Result
 from processors.base import Processor
-
-FIX_INFO_KEY = "fix_info"
-ANGLE_NAME_KEY = "angle_name"
-THRESHOLD_KEY = "threshold"
-ERRORS_KEY = "errors"
+from utils.config import read_config_file
+from utils.constants import MISTAKES_TABLE_NAME, ConfigFiles
 
 
 class MistakesProcessor(Processor):
-    def __init__(self, mistakes_table: dict, exercise: str) -> None:
+    def __init__(self, exercise: str) -> None:
         super().__init__()
+        config_file = read_config_file(ConfigFiles.EXERCISES_TABLES)
+        mistakes_table = config_file[exercise][MISTAKES_TABLE_NAME]
         self.mistake_templates = self.__get_mistake_templates(mistakes_table, exercise)
 
     def process(self, data: list[Result]) -> list[Mistake]:

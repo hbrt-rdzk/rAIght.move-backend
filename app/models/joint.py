@@ -1,8 +1,5 @@
 from pydantic import BaseModel
 
-JOINT_PARAMETERS_NUM = 7
-JOINTS_PER_FRAME = 16
-
 
 class Joint(BaseModel):
     """

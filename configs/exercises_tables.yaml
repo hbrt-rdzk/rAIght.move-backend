@@ -5,16 +5,7 @@ squat:
     - left_hip
     - right_hip
 
-  start:
-    right_knee_3D: 165
-    left_knee_3D: 165
-
-  finish:
-    right_knee_3D: 75
-    left_knee_3D: 75
-
   mistakes_table:
-    not_low_enough:
       fix_info: "Go lower!"
       errors: 
         - angle_name: right_knee_pitch

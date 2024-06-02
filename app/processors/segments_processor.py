@@ -5,13 +5,16 @@ from models.segment import Segment
 from processors.angles_processor import AnglesProcessor
 from processors.base import Processor
 from sklearn.preprocessing import MinMaxScaler
+from utils.config import read_config_file
+from utils.constants import SEGMENTATION_PARAMETERS_NAME, ConfigFiles
 
 
 class SegmentsProcessor(Processor):
-    def __init__(self, fps: int, segmentation_parameters: dict) -> None:
+    def __init__(self, fps: int = 30) -> None:
         super().__init__()
         self.fps = fps
-        self.segmentaion_parameters = segmentation_parameters
+        config_file = read_config_file(ConfigFiles.SEGMENTATION)
+        self.segmentaion_parameters = config_file[SEGMENTATION_PARAMETERS_NAME]
 
     def process(self, data: tuple[list[Joint], list[Angle]]) -> list[Segment]:
         joints, angles = data
