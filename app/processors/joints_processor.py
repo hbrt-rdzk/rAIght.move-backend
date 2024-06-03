@@ -15,8 +15,8 @@ class JointsProcessor(Processor):
 
     def __init__(self) -> None:
         super().__init__()
-        config_file = read_config_file(ConfigFiles.POSE_ESTIMATORS)
-        self.joint_names = config_file[PoseEstimatorModels.MEDIAPIPE][JOINTS_NAME]
+        config_file = read_config_file(ConfigFiles.POSE_ESTIMATORS.value)
+        self.joint_names = config_file[PoseEstimatorModels.MEDIAPIPE.value][JOINTS_NAME]
 
     def process(self, data: Any) -> list[Joint]:
         return [

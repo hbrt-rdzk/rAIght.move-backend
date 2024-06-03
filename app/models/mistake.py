@@ -7,6 +7,7 @@ class Mistake(BaseModel):
     """
 
     exercise: str
+    repetition: int
     mistake_name: str
     fix_info: str
     angle_name: str

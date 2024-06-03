@@ -11,6 +11,4 @@ class Pipeline:
     def run(self, data: Any) -> Any:
         for processor in self.propcessors:
             data = processor.process(data)
-            processor.update(data)
-            data = processor.data
         return data

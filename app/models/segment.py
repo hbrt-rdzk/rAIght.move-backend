@@ -8,8 +8,7 @@ class Segment(BaseModel):
     One exercise repetition features
     """
 
+    repetition: int
+    angles: list[Angle]
     start_frame: int
     finish_frame: int
-    rep: int
-    joints: list[Joint]
-    angles: list[Angle]

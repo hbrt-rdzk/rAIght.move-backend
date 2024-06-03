@@ -7,5 +7,6 @@ class Result(BaseModel):
     """
 
     frame: int
+    repetition: int
     angle_name: str
     diff: float

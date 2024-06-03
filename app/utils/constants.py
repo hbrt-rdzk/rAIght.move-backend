@@ -2,9 +2,9 @@ from enum import Enum
 
 
 class ConfigFiles(Enum):
-    POSE_ESTIMATORS = "config/pose_estimators.yaml"
-    EXERCISES_TABLES = "config/exercises_tables.yaml"
-    SEGMENTATION = "config/segmentation.yaml"
+    POSE_ESTIMATORS = "configs/pose_estimators.yaml"
+    EXERCISES_TABLES = "configs/exercises_tables.yaml"
+    SEGMENTATION = "configs/segmentation.yaml"
 
 
 class PoseEstimatorModels(Enum):
@@ -15,11 +15,12 @@ class PoseEstimatorModels(Enum):
 JOINTS_NAME = "joints"
 ANGLES_NAME = "angles"
 COMPARISON_FEATURES_NAME = "comparison_features"
-SEGMENTATION_PARAMETERS_NAME = "segmentation_parameters"
+SEGMENTATION_PARAMETERS_NAME = "segmentation_params"
 MISTAKES_TABLE_NAME = "mistakes_table"
 
 ANGLE_TYPES = {"3D": [0, 1, 2], "roll": [1, 2], "pitch": [0, 1], "yaw": [0, 2]}
 
+REFERENCE_SEGMENT_PATH = "data/reference/{exercise}/segment.csv"
 
 FIX_INFO_KEY = "fix_info"
 ANGLE_NAME_KEY = "angle_name"

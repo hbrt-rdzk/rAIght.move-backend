@@ -10,30 +10,30 @@ from utils.constants import SEGMENTATION_PARAMETERS_NAME, ConfigFiles
 
 
 class SegmentsProcessor(Processor):
-    def __init__(self, fps: int = 30) -> None:
+    def __init__(self, fps) -> None:
         super().__init__()
         self.fps = fps
-        config_file = read_config_file(ConfigFiles.SEGMENTATION)
+        config_file = read_config_file(ConfigFiles.SEGMENTATION.value)
         self.segmentaion_parameters = config_file[SEGMENTATION_PARAMETERS_NAME]
 
-    def process(self, data: tuple[list[Joint], list[Angle]]) -> list[Segment]:
-        joints, angles = data
-
+    def process(self, data: list[Angle]) -> list[Segment]:
+        angles = data
         exercise_signal = self.__get_exercise_signal(angles)
         filtered_exercise_signal = self.__filter_signal(exercise_signal)
         threshold = filtered_exercise_signal.mean()
         breakpoints = self.__get_breakpoints(filtered_exercise_signal, threshold)
-
         segments = []
         for rep, (start_frame, finish_frame) in enumerate(breakpoints):
-            segment_joints = [
-                joint for joint in joints if start_frame <= joint.frame <= finish_frame
-            ]
             segment_angles = [
                 angle for angle in angles if start_frame <= angle.frame <= finish_frame
             ]
             segments.append(
-                Segment(start_frame, finish_frame, rep, segment_joints, segment_angles)
+                Segment(
+                    repetition=rep,
+                    angles=segment_angles,
+                    start_frame=start_frame,
+                    finish_frame=finish_frame,
+                )
             )
         return self.__filter_segments(segments, filtered_exercise_signal)
 
@@ -137,4 +137,4 @@ class SegmentsProcessor(Processor):
     @staticmethod
     def __reset_segments_indexes(segments: list[Segment]) -> None:
         for idx, segment in enumerate(segments, start=1):
-            segment.rep = idx
+            segment.repetition = idx

@@ -6,6 +6,7 @@ squat:
     - right_hip
 
   mistakes_table:
+    not_low_enough:
       fix_info: "Go lower!"
       errors: 
         - angle_name: right_knee_pitch
