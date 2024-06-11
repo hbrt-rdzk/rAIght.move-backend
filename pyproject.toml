@@ -23,7 +23,8 @@ dependencies = [
   "numpy>=1.26.4",
   "pydantic>=2.7.2",
   "pytest>=8.2.1",
-  "tslearn>=0.6.3"
+  "tslearn>=0.6.3",
+  "scipy>=1.13.1"
 ]
 
 classifiers = [

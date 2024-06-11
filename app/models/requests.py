@@ -1,5 +1,6 @@
-from models.joint import Joint
 from pydantic import BaseModel
+
+from app.models.joint import Joint
 
 
 class ExplainRequest(BaseModel):

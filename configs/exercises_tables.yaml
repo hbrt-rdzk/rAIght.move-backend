@@ -5,6 +5,10 @@ squat:
     - left_hip
     - right_hip
 
+  segmentation_features:
+    - left_knee_pitch
+    - right_knee_pitch
+
   mistakes_table:
     not_low_enough:
       fix_info: "Go lower!"

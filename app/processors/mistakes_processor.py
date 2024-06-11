@@ -1,9 +1,10 @@
-from models.mistake import Mistake
-from models.result import Result
-from processors.base import Processor
-from utils.config import read_config_file
-from utils.constants import (ANGLE_NAME_KEY, ERRORS_KEY, FIX_INFO_KEY,
-                             MISTAKES_TABLE_NAME, THRESHOLD_KEY, ConfigFiles)
+from app.models.mistake import Mistake
+from app.models.result import Result
+from app.processors.base import Processor
+from app.utils.config import read_config_file
+from app.utils.constants import (ANGLE_NAME_KEY, ERRORS_KEY, FIX_INFO_KEY,
+                                 MISTAKES_TABLE_NAME, THRESHOLD_KEY,
+                                 ConfigFiles)
 
 
 class MistakesProcessor(Processor):
@@ -11,7 +12,7 @@ class MistakesProcessor(Processor):
         super().__init__()
         config_file = read_config_file(ConfigFiles.EXERCISES_TABLES.value)
         mistakes_table = config_file[exercise][MISTAKES_TABLE_NAME]
-        self.mistake_templates = self.__get_mistake_templates(mistakes_table, exercise)
+        self.mistake_templates = self._get_mistake_templates(mistakes_table, exercise)
 
     def process(self, data: list[Result]) -> list[Mistake]:
         # TODO: improve this
@@ -33,7 +34,7 @@ class MistakesProcessor(Processor):
         self.data = data
 
     @staticmethod
-    def __get_mistake_templates(mistakes_table: dict, exercise: str) -> list[Mistake]:
+    def _get_mistake_templates(mistakes_table: dict, exercise: str) -> list[Mistake]:
         mistake_templates = []
         for mistake_name, mistake_data in mistakes_table.items():
             fix_info = mistake_data[FIX_INFO_KEY]

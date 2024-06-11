@@ -1,9 +1,9 @@
 from typing import Any
 
-from models.joint import Joint
-from processors.base import Processor
-from utils.config import read_config_file
-from utils.constants import JOINTS_NAME, ConfigFiles, PoseEstimatorModels
+from app.models.joint import Joint
+from app.processors.base import Processor
+from app.utils.config import read_config_file
+from app.utils.constants import JOINTS_NAME, ConfigFiles, PoseEstimatorModels
 
 
 class JointsProcessor(Processor):

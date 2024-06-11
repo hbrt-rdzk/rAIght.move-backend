@@ -1,11 +1,12 @@
 import numpy as np
 import pandas as pd
-from models.angle import Angle
-from models.joint import Joint
-from processors.base import Processor
-from utils.config import read_config_file
-from utils.constants import (ANGLE_TYPES, ANGLES_NAME, ConfigFiles,
-                             PoseEstimatorModels)
+
+from app.models.angle import Angle
+from app.models.joint import Joint
+from app.processors.base import Processor
+from app.utils.config import read_config_file
+from app.utils.constants import (ANGLE_TYPES, ANGLES_NAME, ConfigFiles,
+                                 PoseEstimatorModels)
 
 
 class AnglesProcessor(Processor):
@@ -24,7 +25,7 @@ class AnglesProcessor(Processor):
             for angle_name, joint_ids in self.angle_names.items():
                 coords = np.array([joint_dict[joint_id] for joint_id in joint_ids])
                 for angle_type, angle_dims in ANGLE_TYPES.items():
-                    angle = self.__calculate_angle(*coords, angle_dims)
+                    angle = self._calculate_angle(*coords, angle_dims)
                     all_angles.append(
                         Angle(
                             frame=frame,
@@ -62,7 +63,7 @@ class AnglesProcessor(Processor):
         return angles
 
     @staticmethod
-    def __calculate_angle(
+    def _calculate_angle(
         v1: np.ndarray, v2: np.ndarray, v3: np.ndarray, dims: list
     ) -> float:
         if not all(arr.shape == (3,) for arr in (v1, v2, v3)):

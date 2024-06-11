@@ -1,6 +1,6 @@
-from models.angle import Angle
-from models.joint import Joint
 from pydantic import BaseModel
+
+from app.models.angle import Angle
 
 
 class Segment(BaseModel):
