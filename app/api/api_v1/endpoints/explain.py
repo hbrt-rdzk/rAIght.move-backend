@@ -20,4 +20,5 @@ def explain(request: ExplainRequest) -> list[Mistake]:
     pipeline = Pipeline(
         [angle_processor, segments_processor, results_processor, mistakes_procesor]
     )
-    return pipeline.run(request.joints_data)
+    output = pipeline.run(request.joints_data)
+    return output

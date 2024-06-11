@@ -5,7 +5,7 @@ from app.models.angle import Angle
 from app.models.joint import Joint
 from app.processors.base import Processor
 from app.utils.config import read_config_file
-from app.utils.constants import (ANGLE_TYPES, ANGLES_NAME, ConfigFiles,
+from app.utils.constants import (MEDIAPIPE_ANGLE_TYPES, ANGLES_NAME, ConfigFiles,
                                  PoseEstimatorModels)
 
 
@@ -24,7 +24,7 @@ class AnglesProcessor(Processor):
 
             for angle_name, joint_ids in self.angle_names.items():
                 coords = np.array([joint_dict[joint_id] for joint_id in joint_ids])
-                for angle_type, angle_dims in ANGLE_TYPES.items():
+                for angle_type, angle_dims in MEDIAPIPE_ANGLE_TYPES.items():
                     angle = self._calculate_angle(*coords, angle_dims)
                     all_angles.append(
                         Angle(

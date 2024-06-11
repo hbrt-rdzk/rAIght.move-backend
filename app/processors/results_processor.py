@@ -2,7 +2,7 @@ import pandas as pd
 
 from app.models.result import Result
 from app.models.segment import Segment
-from app.processors.angles_processor import ANGLE_TYPES, AnglesProcessor
+from app.processors.angles_processor import MEDIAPIPE_ANGLE_TYPES, AnglesProcessor
 from app.processors.base import Processor
 from app.utils.config import read_config_file
 from app.utils.constants import (COMPARISON_FEATURES_NAME,
@@ -28,7 +28,7 @@ class ResultsProcessor(Processor):
         results = []
         for segment in data:
             for feature in self.comparison_features:
-                for angle_type in ANGLE_TYPES.keys():
+                for angle_type in MEDIAPIPE_ANGLE_TYPES.keys():
                     angle_name = feature + "_" + angle_type
                     query = [
                         angle.value

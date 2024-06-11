@@ -6,30 +6,30 @@ squat:
     - right_hip
 
   segmentation_features:
-    - left_knee_pitch
-    - right_knee_pitch
+    - left_knee_3D
+    - right_knee_3D
 
   mistakes_table:
     not_low_enough:
       fix_info: "Go lower!"
       errors: 
-        - angle_name: right_knee_pitch
-          threshold: 15
-        - angle_name: left_knee_pitch
-          threshold: 15
-        - angle_name: right_hip_pitch
-          threshold: 15
-        - angle_name: left_hip_pitch
-          threshold: 15
+        - angle_name: right_knee_top
+          threshold: 50
+        - angle_name: left_knee_top
+          threshold: 50
+        - angle_name: right_hip_top
+          threshold: 50
+        - angle_name: left_hip_top
+          threshold: 50
 
     feet_too_wide:
-      fix_info: "Keep your legs wider!"
+      fix_info: "Legs too wide!"
       errors: 
-        - angle_name: right_knee_pitch
+        - angle_name: right_knee_front
           threshold: 15
-        - angle_name: left_knee_pitch
+        - angle_name: left_knee_front
           threshold: 15
-        - angle_name: right_hip_pitch
+        - angle_name: right_hip_front
           threshold: 15
-        - angle_name: left_hip_pitch
+        - angle_name: left_hip_front
           threshold: 15
