@@ -1,35 +1,103 @@
 squat:
-  comparison_features: 
+  segment_angles: 
+    - left_hip_3D
+    - right_hip_3D
+
+  comparison_features:
     - left_knee
     - right_knee
     - left_hip
     - right_hip
 
-  segmentation_features:
-    - left_knee_3D
-    - right_knee_3D
-
   mistakes_table:
+    knees_inward:
+      fix_info: "Keep your knees more narrow!"
+      errors: 
+        - angle_name: left_knee_front
+          threshold: -25
+        - angle_name: right_knee_front
+          threshold: -25
+    
     not_low_enough:
       fix_info: "Go lower!"
       errors: 
-        - angle_name: right_knee_top
-          threshold: 50
-        - angle_name: left_knee_top
-          threshold: 50
-        - angle_name: right_hip_top
-          threshold: 50
-        - angle_name: left_hip_top
-          threshold: 50
-
-    feet_too_wide:
-      fix_info: "Legs too wide!"
-      errors: 
-        - angle_name: right_knee_front
-          threshold: 15
-        - angle_name: left_knee_front
-          threshold: 15
-        - angle_name: right_hip_front
-          threshold: 15
+        - angle_name: left_hip_side
+          threshold: -60
+        - angle_name: right_hip_side
+          threshold: -60
+    
+    front_bend:
+      fix_info: "Don't bend your back forward!"
+      errors:
         - angle_name: left_hip_front
-          threshold: 15
+          threshold: 25
+        - angle_name: right_hip_front
+          threshold: 25
+
+plank:
+  segment_angles: 
+    - left_hip_3D
+    - right_hip_3D
+
+  comparison_features:
+    - left_shoulder
+    - right_shoulder
+    - left_hip
+    - right_hip
+
+  start:
+    right_knee_3D: 165
+    left_knee_3D: 165
+
+  finish:
+    right_knee_3D: 75
+    left_knee_3D: 75
+
+  mistakes_table:
+    hunched_back:
+      fix_info: "Keep your back straight!"
+      errors: 
+        - angle_name: left_hip_3D
+          threshold: 25
+        - angle_name: right_knee_3D
+          threshold: 25
+    
+    arched_back:
+      fix_info: "Keep your back straight!"
+      errors: 
+        - angle_name: left_hip_3D
+          threshold: -25
+        - angle_name: right_knee_3D
+          threshold: -25
+
+lunges:
+  segment_angles: 
+    - left_knee_3D
+    - right_knee_3D
+
+  comparison_features:
+    - left_knee
+    - right_knee
+    - left_hip
+    - right_hip
+
+  start:
+    right_knee_3D: 165
+    left_knee_3D: 165
+
+  finish:
+    right_knee_3D: 75
+    left_knee_3D: 75
+
+  mistakes_table:
+    hunched_back:
+      fix_info: "Not low enough!"
+      errors: 
+        - angle_name: right_hip_3D
+          threshold: 30
+    
+    arched_back:
+      fix_info: "Knee passes toe"
+      errors: 
+        - angle_name: right_knee_side
+          threshold: 30
