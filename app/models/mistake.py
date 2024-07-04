@@ -8,6 +8,8 @@ class Mistake(BaseModel):
 
     exercise: str
     repetition: int
+    repetition_start_frame: int
+    repetition_finish_frame: int
     mistake_name: str
     fix_info: str
     angle_name: str

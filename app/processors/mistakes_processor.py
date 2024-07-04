@@ -20,12 +20,15 @@ class MistakesProcessor(Processor):
         segments = max(result.repetition for result in data) + 1
         for segment in range(1, segments):
             segment_data = [result for result in data if result.repetition == segment]
+            segment_start_frame, segment_finish_frame = segment_data[0].frame, segment_data[-1].frame
             for mistake_template in self.mistake_templates:
                 for result in segment_data:
                     if (result.angle_name == mistake_template.angle_name) and (
                         abs(result.diff) > mistake_template.threshold
                     ):
                         mistake_template.repetition = segment
+                        mistake_template.repetition_start_frame = segment_start_frame
+                        mistake_template.repetition_finish_frame = segment_finish_frame
                         mistakes.append(mistake_template)
                         break
         return mistakes
@@ -43,6 +46,8 @@ class MistakesProcessor(Processor):
                     Mistake(
                         exercise=exercise,
                         repetition=0,
+                        repetition_start_frame=0,
+                        repetition_finish_frame=0,
                         mistake_name=mistake_name,
                         fix_info=fix_info,
                         angle_name=error[ANGLE_NAME_KEY],
