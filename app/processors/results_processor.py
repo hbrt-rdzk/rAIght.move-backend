@@ -5,10 +5,12 @@ from app.models.segment import Segment
 from app.processors.angles_processor import MEDIAPIPE_ANGLE_TYPES, AnglesProcessor
 from app.processors.base import Processor
 from app.utils.config import read_config_file
-from app.utils.constants import (COMPARISON_FEATURES_NAME,
-                                 REFERENCE_SEGMENT_PATH, ConfigFiles)
-from app.utils.dtw import (filter_repetable_reference_indexes,
-                           get_warped_frame_indexes)
+from app.utils.constants import (
+    COMPARISON_FEATURES_NAME,
+    REFERENCE_SEGMENT_PATH,
+    ConfigFiles,
+)
+from app.utils.dtw import filter_repetable_reference_indexes, get_warped_frame_indexes
 
 
 class ResultsProcessor(Processor):

@@ -2,9 +2,14 @@ from app.models.mistake import Mistake
 from app.models.result import Result
 from app.processors.base import Processor
 from app.utils.config import read_config_file
-from app.utils.constants import (ANGLE_NAME_KEY, ERRORS_KEY, FIX_INFO_KEY,
-                                 MISTAKES_TABLE_NAME, THRESHOLD_KEY,
-                                 ConfigFiles)
+from app.utils.constants import (
+    ANGLE_NAME_KEY,
+    ERRORS_KEY,
+    FIX_INFO_KEY,
+    MISTAKES_TABLE_NAME,
+    THRESHOLD_KEY,
+    ConfigFiles,
+)
 
 
 class MistakesProcessor(Processor):
@@ -20,7 +25,10 @@ class MistakesProcessor(Processor):
         segments = max(result.repetition for result in data) + 1
         for segment in range(1, segments):
             segment_data = [result for result in data if result.repetition == segment]
-            segment_start_frame, segment_finish_frame = segment_data[0].frame, segment_data[-1].frame
+            segment_start_frame, segment_finish_frame = (
+                segment_data[0].frame,
+                segment_data[-1].frame,
+            )
             for mistake_template in self.mistake_templates:
                 for result in segment_data:
                     if (result.angle_name == mistake_template.angle_name) and (

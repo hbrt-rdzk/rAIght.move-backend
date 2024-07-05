@@ -18,7 +18,12 @@ SEGMENTATION_FEATURES_NAME = "segmentation_features"
 COMPARISON_FEATURES_NAME = "comparison_features"
 MISTAKES_TABLE_NAME = "mistakes_table"
 
-MEDIAPIPE_ANGLE_TYPES = {"3D": [0, 1, 2], "top": [0, 2], "side": [0, 1], "front": [1, 2]}
+MEDIAPIPE_ANGLE_TYPES = {
+    "3D": [0, 1, 2],
+    "top": [0, 2],
+    "side": [0, 1],
+    "front": [1, 2],
+}
 
 REFERENCE_SEGMENT_PATH = "data/reference/{exercise}/segment.csv"
 
