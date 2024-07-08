@@ -11,9 +11,8 @@ from app.utils.constants import SEGMENTATION_FEATURES_NAME, ConfigFiles
 
 
 class SegmentsProcessor(Processor):
-    def __init__(self, exercise: str, fps: int) -> None:
+    def __init__(self, exercise: str) -> None:
         super().__init__()
-        self.fps = fps
         config_file = read_config_file(ConfigFiles.EXERCISES_TABLES.value)
         self.segmentaion_features = config_file[exercise][SEGMENTATION_FEATURES_NAME]
 

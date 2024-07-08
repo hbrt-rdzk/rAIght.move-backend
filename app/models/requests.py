@@ -9,5 +9,4 @@ class ExplainRequest(BaseModel):
     """
 
     exercise: str
-    fps: int
     joints_data: list[RequestJoint]

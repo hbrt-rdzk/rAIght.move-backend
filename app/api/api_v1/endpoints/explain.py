@@ -16,7 +16,7 @@ router = APIRouter()
 def explain(request: ExplainRequest) -> list[Mistake]:
     joints_processor = JointsProcessor()
     angle_processor = AnglesProcessor()
-    segments_processor = SegmentsProcessor(request.exercise, request.fps)
+    segments_processor = SegmentsProcessor(request.exercise)
     results_processor = ResultsProcessor(request.exercise)
     mistakes_procesor = MistakesProcessor(request.exercise)
     pipeline = Pipeline(

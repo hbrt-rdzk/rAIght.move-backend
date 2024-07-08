@@ -28,6 +28,7 @@ class JointsProcessor(Processor):
                 visibility=joint.visibility,
             )
             for joint in data
+            if joint.id in self.joint_names.keys()
         ]
 
     def update(self, data: list[Joint]) -> None:

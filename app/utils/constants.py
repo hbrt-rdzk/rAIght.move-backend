@@ -14,7 +14,7 @@ class PoseEstimatorModels(Enum):
 JOINTS_NAME = "joints"
 ANGLES_NAME = "angles"
 
-SEGMENTATION_FEATURES_NAME = "segmentation_features"
+SEGMENTATION_FEATURES_NAME = "segment_angles"
 COMPARISON_FEATURES_NAME = "comparison_features"
 MISTAKES_TABLE_NAME = "mistakes_table"
 
