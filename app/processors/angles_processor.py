@@ -6,8 +6,8 @@ from app.models.joint import Joint
 from app.processors.base import Processor
 from app.utils.config import read_config_file
 from app.utils.constants import (
-    MEDIAPIPE_ANGLE_TYPES,
     ANGLES_NAME,
+    MEDIAPIPE_ANGLE_TYPES,
     ConfigFiles,
     PoseEstimatorModels,
 )

@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from app.models.joint import Joint
+from app.models.joint import RequestJoint
 
 
 class ExplainRequest(BaseModel):
@@ -10,4 +10,4 @@ class ExplainRequest(BaseModel):
 
     exercise: str
     fps: int
-    joints_data: list[Joint]
+    joints_data: list[RequestJoint]
